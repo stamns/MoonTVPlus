@@ -55,8 +55,6 @@ COPY --from=builder --chown=nextjs:nodejs /app/server.js ./server.js
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# 复制 package.json 用于安装 Socket.IO 依赖
-COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
 
 # 安装 Socket.IO 相关依赖（standalone 模式不会自动包含）
 RUN pnpm add socket.io@^4.8.1 socket.io-client@^4.8.1 --prod
